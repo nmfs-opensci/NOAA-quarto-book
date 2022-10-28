@@ -1,0 +1,79 @@
+format:
+  docx:
+    toc: true
+    toc-depth: 2
+    reference-doc: template.docx
+    always_allow_html: true
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+  titlepage-pdf:
+    documentclass: scrbook
+    classoption: ["oneside", "open=any"]
+    keep-tex: true
+    toc: true
+    toc-depth: 2
+    lof: true
+    lot: true
+    titlepage: true
+    titlepage-bg-image: "images/corner-image.png"
+    titlepage-geometry: ["top=3in", "bottom=1in", "right=1in", "left=1.75in"]
+    titlepage-theme:
+      title-style: "plain"
+      title-fontsize: 30
+      title-fontstyle: ["bfseries"]
+      title-color: "black"
+      title-align: "left"
+      author-fontsize: 20
+      vrule-width: 0pt
+      bg-image-size: "0.75\\paperwidth"
+      bg-image-location: "ULCorner"
+    coverpage: true
+    coverpage-bg-image: "images/cover-header-2.png"
+    coverpage-header: "NOAA Technical Memorandum NMFS-XXX-##"
+    coverpage-date: "January 2023"
+    coverpage-footer: |
+      U.S. DEPARTMENT OF COMMERCE \
+      \
+      National Oceanic and Atmospheric Administration \
+      National Marine Fisheries Service \
+      Northwest Fisheries Science Center
+    coverpage-theme:
+      title-style: "plain"
+      title-align: "left"
+      bg-image-left: "0pt"
+      bg-image-bottom: "8.75in"
+      bg-image-size: "\\paperwidth"
+      coverpage-theme:
+      header-fontsize: 16
+      header-left: 2.3in
+      header-width: 5in
+      header-bottom: 9.8in
+      header-color: "white"
+      title-fontsize: 30
+      title-fontstyle: ["bfseries"]
+      title-left: 2.3in
+      title-width: 5in
+      title-bottom: 7in
+      title-color: "black"
+      author-fontsize: 20
+      author-left: 2.3in
+      author-width: 5in
+      author-bottom: 5in
+      footer-style: "colorbox"
+      footer-colorbox-fill: "blue"
+      footer-fontsize: 8
+      footer-left: 6in
+      footer-width: 2.5in
+      date-style: "colorbox"
+      date-colorbox-fill: "blue"
+      date-fontsize: 20
+      date-left: 6in
+      date-width: 2.5in
+      date-align: "center"
+    include-in-header:
+      text: |
+        \usepackage[default]{opensans}
+        \fontseries{lc}\selectfont
+#        \usepackage[default,oldstyle,scale=0.95]{opensans}

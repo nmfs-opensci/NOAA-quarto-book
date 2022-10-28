@@ -1,0 +1,15 @@
+---
+title: References
+---
+
+Quarto has powerful references functionality. You can easily insert citations from Zotero libraries that you maintain in the cloud (on Zotero). This allows the whole team to update the library and you can sync up to that library. Read about this on the Quarto documentation on [citations](https://quarto.org/docs/visual-editor/technical.html#citations). Google youtube videos on this also to see it in action.
+
+Add a `.bib` file in to your project or add a linked Zotero library via RStudio in Visual mode with Tools \> Project Options... \> R Markdown \> select custom libraries from the Zotero dropdown.
+
+The you can type `@` and you will see a dropdown of the references in your libraries. You can then select the ones to add. If you don't see the one you need, you can paste in the DOI and it will be added to your references file (with all the info). The references will be added to your references section of your book automatically.
+
+See the `references.qmd` file for how to include the references.
+
+-   `@ansley1981` will produce @ansley1981
+
+-   `[@ansley1981]` will produce [@ansley1981].

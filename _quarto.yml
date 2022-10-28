@@ -1,14 +1,41 @@
 project: 
-  type: website
+  type: book
 
-website: 
+book: 
   page-navigation: true
-  title: "NOAA quarto simple" 
-  site-url: "https://nmfs-opensci.github.io/NOAA-quarto-simple" 
-  repo-url: "https://github.com/nmfs-opensci/NOAA-quarto-simple"
+  title: "NOAA quarto book" 
+  site-url: "https://nmfs-opensci.github.io/NOAA-quarto-book" 
+  repo-url: "https://github.com/nmfs-opensci/NOAA-quarto-book"
   repo-actions: [edit, source, issue]
   favicon: images/favicon.ico
-  
+  downloads: [pdf, docx]
+  search: true
+  author:
+    - name: Jane Doe
+      affiliations:
+        - name: NOAA Fisheres
+          department: Northwest Fisheries Science Center
+    - name: Eva Nováková
+      institute: test
+      affiliations:
+        - name: NOAA Fisheries
+          department: West Coast Regional Office
+          institute: test
+    - name: Matti Meikäläinen
+      affiliations:
+        - name: NOAA Fisheries
+          department: Southwest Fisheries Science Center
+  chapters:
+    - index.qmd
+    - content/setup.qmd
+    - content/add-content.qmd
+    - content/customizing.qmd
+    - content/rendering.qmd
+    - content/rmarkdown.Rmd
+    - content/code.qmd
+    - content/adding-refs.qmd
+    - content/references.qmd
+
   page-footer:
     right: "This page is built with [Quarto](https://quarto.org/)."
     left: "&copy; CC-1.0"
@@ -23,41 +50,36 @@ website:
       - icon: globe
         href: https://nmfs-opensci.github.io
         text: "NMFS Open Science"
-      - icon: github
-        href: https://github.com/nmfs-opensci
-        text: "NMFS OpenSci"
 
     style: "docked"
     search: true
     collapse-level: 1
-    contents:
-      - href: index.qmd
-        text: Home
-      - href: content/add-content.qmd
-        text: Add content
-      - href: content/customizing.qmd
-        text: Customizing
-      - href: content/rendering.qmd
-        text: Rendering
-      - href: content/rmarkdown.Rmd
-        text: R Markdown files
-      - href: content/code.qmd
-        text: Code in your files
-      - href: content/acknowledgements.qmd
-        text: Acknowledgements
+
+bibliography: [references.bib]
+
+execute:
+  echo: false
+  code-overflow: wrap
 
 format:
-  html:
-    theme:
-      light: [cosmo, theme.scss] 
-      dark: [cosmo, theme-dark.scss]
-    code-copy: true
-    code-overflow: wrap
+  docx:
     toc: true
-
+    toc-depth: 2
+    reference-doc: template.docx
+    always_allow_html: true
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+  titlepage-pdf:
+    documentclass: scrbook
+    classoption: ["oneside", "open=any"]
+    titlepage: "plain"
 
 filters:
   - include-files.lua
   - quarto
 
-  
+metadata-files:
+  - _frontmatter.yml
+ 
