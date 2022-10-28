@@ -4,10 +4,6 @@ format:
     toc-depth: 2
     reference-doc: template.docx
     always_allow_html: true
-  html:
-    theme: cosmo
-    toc: true
-    toc-depth: 3
   titlepage-pdf:
     documentclass: scrbook
     classoption: ["oneside", "open=any"]
@@ -77,3 +73,7 @@ format:
         \usepackage[default]{opensans}
         \fontseries{lc}\selectfont
 #        \usepackage[default,oldstyle,scale=0.95]{opensans}
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3

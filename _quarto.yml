@@ -61,6 +61,11 @@ execute:
   code-overflow: wrap
 
 format:
+  titlepage-pdf:
+    documentclass: scrbook
+    classoption: ["oneside", "open=any"]
+    titlepage: "plain"
+    keep-tex: true
   docx:
     toc: true
     toc-depth: 2
@@ -70,10 +75,6 @@ format:
     theme: [cosmo, assets/theme.scss] 
     toc: true
     toc-depth: 3
-  titlepage-pdf:
-    documentclass: scrbook
-    classoption: ["oneside", "open=any"]
-    titlepage: "plain"
 
 filters:
   - assets/include-files.lua
