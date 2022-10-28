@@ -80,7 +80,7 @@ filters:
   - include-files.lua
   - quarto
 
-# Uncomment next 2 lines to create a PDF that looks like a tech memo
-# metadata-files:
-#  - _frontmatter.yml
+# Comment next 2 lines if the PDF is having trouble
+metadata-files:
+  - _frontmatter.yml
  
