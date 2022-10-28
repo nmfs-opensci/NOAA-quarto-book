@@ -7,7 +7,7 @@ book:
   site-url: "https://nmfs-opensci.github.io/NOAA-quarto-book" 
   repo-url: "https://github.com/nmfs-opensci/NOAA-quarto-book"
   repo-actions: [edit, source, issue]
-  favicon: images/favicon.ico
+  favicon: assets/favicon.ico
   downloads: [pdf, docx]
   search: true
   author:
@@ -50,12 +50,11 @@ book:
       - icon: globe
         href: https://nmfs-opensci.github.io
         text: "NMFS Open Science"
-
     style: "docked"
     search: true
     collapse-level: 1
 
-bibliography: [references.bib]
+bibliography: [content/references.bib]
 
 execute:
   echo: false
@@ -68,7 +67,7 @@ format:
     reference-doc: template.docx
     always_allow_html: true
   html:
-    theme: cosmo
+    theme: [cosmo, assets/theme.scss] 
     toc: true
     toc-depth: 3
   titlepage-pdf:
@@ -77,7 +76,7 @@ format:
     titlepage: "plain"
 
 filters:
-  - include-files.lua
+  - assets/include-files.lua
   - quarto
 
 # Comment next 2 lines if the PDF is having trouble
