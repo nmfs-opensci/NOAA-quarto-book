@@ -1,0 +1,94 @@
+---
+title: Publishing
+---
+
+To get your Quarto webpage to show up with the url
+```
+yourname.github.io/yourrepo
+```
+you have a few steps.
+
+## Turn on GitHub Pages for your repo
+
+* Turn on GitHub Pages under Settings > Pages . You will set pages to be made from the gh-pages branch and the root directory.
+* Turn on GitHub Actions under Settings > Actions > General
+
+The GitHub Action will automatically recreate your website when you push to GitHub **after** you do the initial `gh-pages` set-up
+
+## Do your first publish to `gh-pages`
+
+The first time you publish to `gh-pages`, you need to do so locally.
+
+* On your local computer, open a terminal window and `cd` to your repo directory. Here is what that `cd` command looks like for me. You command will look different because your local repo will be somewhere else on your computer.
+```
+cd ~/Documents/GitHub/NOAA-quarto-simple
+```
+* Publish to the `gh-pages`. In the terminal type
+```
+quarto publish gh-pages
+```
+This is going to render your webpage and then push the `_site` contents to the `gh-pages` branch.
+
+
+## Don't like using `gh-pages`?
+
+In some cases, you don't want your website on the `gh-pages` branch. For example, if you are creating releases and you want the website pages archived in that release, then you won't want your website pages on the `gh-pages` branch.
+
+Here are the changes you need to make if you to avoid `gh-pages` branch.
+
+* At the top of `_quarto.yml` add the following:
+```
+project: 
+  type: website
+  output-dir: docs
+```
+* On GitHub under Settings > Pages set pages to be made from the `main` branch and the docs directory.
+* Make sure `docs` is not listed in `.gitignore`
+* Publish the site the first time locally using `quarto publish` from the terminal
+* Change the GitHub Action because you can't use `quarto publish gh-pages`. You'll need to push to the main branch yourself (in the GitHub Action)
+```
+on:
+  push:
+    branches: main
+
+name: Render and Publish
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2 
+        
+      - name: Set up R (needed for Rmd)
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Install packages (needed for Rmd)
+        run: Rscript -e 'install.packages(c("rmarkdown", "knitr", "jsonlite"))'
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          # To install LaTeX to build PDF book 
+          # tinytex: true 
+          # uncomment below and fill to pin a version
+          # version: 0.9.600
+      
+      - name: Render Quarto Project
+        uses: quarto-dev/quarto-actions/render@v2
+        with:
+          to: html
+
+      - name: Set up Git
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+
+      - name: Commit all changes and push
+        run: |
+          git add -A && git commit -m 'Build site' || echo "No changes to commit"
+          git push origin || echo "No changes to commit"
+```
