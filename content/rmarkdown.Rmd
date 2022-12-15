@@ -20,10 +20,25 @@ summary(cars)
 
 ## Including Plots
 
-You can also embed plots, for example:
+You can also embed plots and reference them, like so @fig-pressure.
 
 ```{r pressure, echo=FALSE}
+#| label: fig-pressure
+#| fig-cap: "Plot of pressure"
 plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## Including Tables
+
+You can also embed tables and reference them with @tbl-iris.
+
+```{r}
+#| label: tbl-iris
+#| tbl-cap: "Iris Data"
+
+library(knitr)
+kable(head(iris))
+```
+
