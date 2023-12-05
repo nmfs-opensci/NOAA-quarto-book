@@ -39,7 +39,7 @@ The most common trouble users run into is that the book is not rendering. Check 
 * The GitHub Pages has not been set. You need to go to Pages under settings, and set Pages to build from the `gh-pages` branch.
 * You did not allow GitHub Actions to run and/or did not give read/write permission. Go to Settings > Actions > General, and make sure Actions are allowed (top section) and they have read/write permission (bottom section).
 * You did not push a change to the main branch. The Action is triggered by a push to main, so try making an edit to README.md and pushing that change.
-* 
+  
 <hr>
 
 ### Disclaimer
