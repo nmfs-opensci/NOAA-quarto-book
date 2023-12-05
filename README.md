@@ -19,6 +19,9 @@ The repo includes a GitHub Action that will build the book (html, PDF, and docx)
 * Turn on GitHub Actions under Settings > Actions > General
 <img width="719" alt="image" src="https://user-images.githubusercontent.com/2545978/196808404-0c075fcf-db03-4516-88dd-3143b9fca475.png">
 
+* Allow GitHub Actions to write to the gh-pages branch. Scroll to the bottom under Settings > Actions > General, and make sure "Read and Write" is selected.
+<img width="658" alt="image" src="https://user-images.githubusercontent.com/2545978/214977476-d25721b9-a5a7-4128-adfc-ff76090b809a.png">
+
 * Edit the repo description and Readme to add a link to the webpage. When you edit the description, you will see the link url in the url box or you can click on the Actions tab or the  Settings > Pages page to find the url to the Quarto website
 
 ## Customize
