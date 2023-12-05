@@ -35,7 +35,7 @@ Having trouble? Scroll down to the troubleshooting section.
 
 The most common trouble users run into is that the book is not rendering. Check the following:
 
-* The `gh-pages` branch exists. If you forgot to check the check box to include all the branches when you created the repo from the template then it won't exist.
+* The `gh-pages` branch does not exist. If you forgot to check the check box to include all the branches when you created the repo from the template then it won't exist. The Action will fail if the gh-pages branch does not already exist. You can create the branch and then push a change to main to trigger the Action to run again.
 * The GitHub Pages has not been set. You need to go to Pages under settings, and set Pages to build from the `gh-pages` branch.
 * You did not allow GitHub Actions to run and/or did not give read/write permission. Go to Settings > Actions > General, and make sure Actions are allowed (top section) and they have read/write permission (bottom section).
 * You did not push a change to the main branch. The Action is triggered by a push to main, so try making an edit to README.md and pushing that change.
