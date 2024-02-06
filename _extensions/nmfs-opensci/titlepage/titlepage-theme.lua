@@ -11,6 +11,13 @@ local function getVal(s)
   return pandoc.utils.stringify(s)
 end
 
+local function is_equal (s, val)
+  if isEmpty(s) then return false end
+  if getVal(s) == val then return true end
+
+  return false
+end
+
 local function has_value (tab, val)
     for index, value in ipairs(tab) do
         if value == val then
@@ -386,8 +393,8 @@ This function assigns the themevals to the meta data
   }
   
   m['titlepage-file'] = false
+  if isEmpty(m.titlepage) then m['titlepage'] = "plain" end
   if getVal(m.titlepage) == "false" then m['titlepage'] = "none" end
-  if isEmpty(m.titlepage) then mm['titlepage'] = "plain" end
   if getVal(m.titlepage) == "true" then m['titlepage'] = "plain" end
   if getVal(m.titlepage) == "none" then 
     m['titlepage-true'] = false
@@ -433,6 +440,9 @@ Error checking and setting the style codes
   set_style("titlepage", "author", okvals)
   okvals = {"none", "numbered-list", "numbered-list-with-correspondence"}
   set_style("titlepage", "affiliation", okvals)
+  if is_equal(m['titlepage-theme']["author-style"], "author-address") and is_equal(m['titlepage-theme']["author-align"], "spread") then
+    error("\n\nquarto_titlepages error: If author-style is two-column, then author-align cannot be spread.\n\n")
+  end
 
 --[[
 Set the fontsize defaults
@@ -462,6 +472,18 @@ Set author sep character
   end
   if getVal(m['titlepage-theme']["author-sep"]) == "newline" then
     m['titlepage-theme']["author-sep"] = pandoc.MetaInlines{
+          pandoc.RawInline("latex","\\\\")}
+  end
+
+--[[
+Set affiliation sep character
+--]]
+  if isEmpty(m['titlepage-theme']["affiliation-sep"]) then
+    m['titlepage-theme']["affiliation-sep"] = pandoc.MetaInlines{
+          pandoc.RawInline("latex",",~")}
+  end
+  if getVal(m['titlepage-theme']["affiliation-sep"]) == "newline" then
+    m['titlepage-theme']["affiliation-sep"] = pandoc.MetaInlines{
           pandoc.RawInline("latex","\\\\")}
   end
   

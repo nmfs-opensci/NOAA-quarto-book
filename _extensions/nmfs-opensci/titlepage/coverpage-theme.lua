@@ -67,7 +67,7 @@ okvals: a text table of ok styles. e.g. {"right", "center"}
 This function gets the value of something like coverpage-theme.title-style and sets a value coverpage-theme.title-style.plain (for example). It also
 does error checking against okvals. "plain" is always ok and if no value is set then the style is set to plain.
 page: titlepage or coverpage
-styleement: page, title, subtitle, header, footer, affiliation, etc
+styleelement: page, title, subtitle, header, footer, affiliation, date, etc
 okvals: a text table of ok styles. e.g. {"plain", "two-column"}
 --]]
   local function set_style (page, styleelement, okvals)
@@ -224,7 +224,8 @@ Set up the demos
   choice = pandoc.utils.stringify(m.coverpage)
   if choice == "great-wave" then
     if isEmpty(m['coverpage-bg-image']) then
-      m['coverpage-bg-image'] = script_path().."images/TheGreatWaveoffKanagawa.jpeg"
+--      m['coverpage-bg-image'] = script_path().."images/TheGreatWaveoffKanagawa.jpeg"
+      m['coverpage-bg-image'] = "img/TheGreatWaveoffKanagawa.jpeg"
     end
     if isEmpty(m['coverpage-title']) then
       m['coverpage-title'] = "quarto_titlepages"
@@ -232,7 +233,7 @@ Set up the demos
     if isEmpty(m['coverpage-footer']) then
       m['coverpage-footer'] = "Templates for title pages and covers"
     end
-    demovals = {["title-align"] = "right", ["title-fontsize"] = 30, ["title-fontfamily"] = "Palatino", ["title-fontstyle"] = {"textbf", "textit"}, ["title-bottom"] = "10in", ["author-style"] = "none", ["footer-fontsize"] = 20, ["footer-fontfamily"] = "Palatino", ["footer-fontstyle"] = {"textit"}, ["footer-align"] = "right", ["footer-bottom"] = "9.5in", ["page-html-color"] = "F6D5A8", ["bg-image-fading"] = "north"}
+    demovals = {["title-align"] = "right", ["title-fontsize"] = 40, ["title-fontfamily"] = "QTDublinIrish.otf", ["title-bottom"] = "10in", ["author-style"] = "none", ["footer-fontsize"] = 20, ["footer-fontfamily"] = "QTDublinIrish.otf", ["footer-align"] = "right", ["footer-bottom"] = "9.5in", ["page-html-color"] = "F6D5A8", ["bg-image-fading"] = "north"}
     for dkey, val in pairs(demovals) do
       if isEmpty(m['coverpage-theme'][dkey]) then
         m['coverpage-theme'][dkey] = val
@@ -241,7 +242,8 @@ Set up the demos
   end
   if choice == "otter" then
     if isEmpty(m['coverpage-bg-image']) then
-      m['coverpage-bg-image'] = script_path().."images/otter-bar.jpeg"
+--      m['coverpage-bg-image'] = script_path().."images/otter-bar.jpeg"
+        m['coverpage-bg-image'] = "img/otter-bar.jpeg"
     end
     if isEmpty(m['coverpage-title']) then
       m['coverpage-title'] = "Otters"
@@ -257,8 +259,8 @@ Set up the demos
     end
   end
 
--- set the coverpage values unless user passed them in
-  for key, val in pairs({"title", "author"}) do
+-- set the coverpage values unless user passed them in as coverpage-key
+  for key, val in pairs({"title", "author", "date"}) do
     if isEmpty(m['coverpage-' .. val]) then
       if not isEmpty(m[val]) then
         m['coverpage-' .. val] = m[val]
@@ -266,15 +268,19 @@ Set up the demos
     end
   end
 -- make a bit more robust to whatever user passes in for coverpage-author
-  for key, val in pairs(m['coverpage-author']) do
-     m['coverpage-author'][key] = getVal(m['coverpage-author'][key])
+  if not isEmpty(m['coverpage-author']) then
+    for key, val in pairs(m['coverpage-author']) do
+      m['coverpage-author'][key] = getVal(m['coverpage-author'][key])
+    end
   end
 
 -- fix "true" to figure out what was passed in
   if choice == "true" then
-    for key, val in pairs({"title", "author", "footer", "header"}) do
+    for key, val in pairs({"title", "author", "footer", "header", "date"}) do
       if not isEmpty(m['coverpage-' .. val]) then
-        m['coverpage-theme'][val .. "-style"] = "plain"
+        if isEmpty(m['coverpage-theme'][val .. "-style"]) then
+          m['coverpage-theme'][val .. "-style"] = "plain"
+        end
       else
         m['coverpage-theme'][val .. "-style"] = "none"
       end
@@ -292,6 +298,7 @@ Error checking and setting the style codes
   set_style("coverpage", "footer", okvals)
   set_style("coverpage", "header", okvals)
   set_style("coverpage", "author", okvals)
+  set_style("coverpage", "date", okvals)
 
   if isEmpty(m['coverpage-bg-image']) then
     m['coverpage-bg-image'] = "none" -- need for stringify to work
@@ -334,7 +341,7 @@ if page-fontsize was passed in or if fontsize passed in but not spacing
 --]]
 
   -- if not passed in then it will take page-fontsize and page-spacing
-  for key, val in pairs({"title", "author", "footer", "header"}) do
+  for key, val in pairs({"title", "author", "footer", "header", "date"}) do
     if getVal(m["coverpage-theme"][val .. "-style"]) ~= "none" then
       if not isEmpty(m["coverpage-theme"]["page-fontsize"]) then
         if isEmpty(m["coverpage-theme"][val .. "-fontsize"]) then
@@ -344,7 +351,7 @@ if page-fontsize was passed in or if fontsize passed in but not spacing
     end
   end
   -- make sure spacing is set if user passed in fontsize
-  for key, val in pairs({"page", "title", "author", "footer", "header"}) do
+  for key, val in pairs({"page", "title", "author", "footer", "header", "date"}) do
     if not isEmpty(m['coverpage-theme'][val .. "-fontsize"]) then
       if isEmpty(m['coverpage-theme'][val .. "-spacing"]) then
         m['coverpage-theme'][val .. "-spacing"] = 1.2*getVal(m['coverpage-theme'][val .. "-fontsize"])
@@ -365,6 +372,18 @@ Set author sep character
   end
 
 --[[
+Set affiliation sep character
+--]]
+  if isEmpty(m['coverpage-theme']["affiliation-sep"]) then
+    m['coverpage-theme']["affiliation-sep"] = pandoc.MetaInlines{
+          pandoc.RawInline("latex",",~")}
+  end
+  if getVal(m['coverpage-theme']["affiliation-sep"]) == "newline" then
+    m['coverpage-theme']["affiliation-sep"] = pandoc.MetaInlines{
+          pandoc.RawInline("latex","\\\\")}
+  end
+
+--[[
 Set the defaults for the coverpage alignments
 default coverpage alignment is left
 because coverpage uses tikzpicture, the alignments of the elements must be set
@@ -375,7 +394,7 @@ because coverpage uses tikzpicture, the alignments of the elements must be set
   for key, val in pairs({"page", "title", "author", "footer", "header", "logo", "date"}) do
     if not isEmpty(m["coverpage-theme"][val .. "-align"]) then
       okvals = {"right", "left", "center"}
-      if has_value({"title", "author", "footer", "header"}, val) then table.insert(okvals, "spread") end
+      if has_value({"title", "author", "footer", "header", "date"}, val) then table.insert(okvals, "spread") end
       ok = check_yaml (m["coverpage-theme"][val .. "-align"], "coverpage-theme: " .. val .. "-align", okvals)
       if not ok then error("") end
     else
