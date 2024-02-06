@@ -57,17 +57,15 @@ format:
       author-left: 2.3in
       author-width: 5in
       author-bottom: 5in
-      footer-style: "colorbox"
-      footer-colorbox-fill: "blue"
+      footer-style: "plain"
       footer-fontsize: 8
       footer-left: 6in
       footer-width: 2.5in
-      date-style: "colorbox"
-      date-colorbox-fill: "blue"
+      date-style: "plain"
       date-fontsize: 20
       date-left: 6in
       date-width: 2.5in
-      date-align: "center"
+      date-bottom: 2in
     include-in-header:
       text: |
         \usepackage[default]{opensans}
