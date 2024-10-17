@@ -110,33 +110,33 @@
     ]
   },
   {
-    "objectID": "content/rmarkdown.html",
-    "href": "content/rmarkdown.html",
-    "title": "5  R Markdown",
+    "objectID": "content/figures_and_tables.html",
+    "href": "content/figures_and_tables.html",
+    "title": "5  Figures and Tables",
     "section": "",
-    "text": "5.1 R Markdown\nThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.\nWhen you click the Knit button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:\nsummary(cars)\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00",
+    "text": "5.1 Code\nYou can embed an R code chunk like this:\nsummary(cars)\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>R Markdown</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Figures and Tables</span>"
     ]
   },
   {
-    "objectID": "content/rmarkdown.html#including-plots",
-    "href": "content/rmarkdown.html#including-plots",
-    "title": "5  R Markdown",
+    "objectID": "content/figures_and_tables.html#including-plots",
+    "href": "content/figures_and_tables.html#including-plots",
+    "title": "5  Figures and Tables",
     "section": "5.2 Including Plots",
     "text": "5.2 Including Plots\nYou can also embed plots and reference them, like so Figure 5.1.\n\n\n\n\n\n\n\n\nFigure 5.1: Plot of pressure\n\n\n\n\n\nNote that the echo = FALSE parameter was added to the code chunk to prevent printing of the R code that generated the plot.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>R Markdown</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Figures and Tables</span>"
     ]
   },
   {
-    "objectID": "content/rmarkdown.html#including-tables",
-    "href": "content/rmarkdown.html#including-tables",
-    "title": "5  R Markdown",
+    "objectID": "content/figures_and_tables.html#including-tables",
+    "href": "content/figures_and_tables.html#including-tables",
+    "title": "5  Figures and Tables",
     "section": "5.3 Including Tables",
     "text": "5.3 Including Tables\nYou can also embed tables and reference them with Table 5.1.\n\nlibrary(knitr)\nkable(head(iris))\n\n\n\nTable 5.1: Iris Data\n\n\n\n\n\n\nSepal.Length\nSepal.Width\nPetal.Length\nPetal.Width\nSpecies\n\n\n\n\n5.1\n3.5\n1.4\n0.2\nsetosa\n\n\n4.9\n3.0\n1.4\n0.2\nsetosa\n\n\n4.7\n3.2\n1.3\n0.2\nsetosa\n\n\n4.6\n3.1\n1.5\n0.2\nsetosa\n\n\n5.0\n3.6\n1.4\n0.2\nsetosa\n\n\n5.4\n3.9\n1.7\n0.4\nsetosa",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>R Markdown</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Figures and Tables</span>"
     ]
   },
   {
