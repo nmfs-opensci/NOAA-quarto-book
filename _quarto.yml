@@ -31,7 +31,7 @@ book:
     - content/add-content.qmd
     - content/customizing.qmd
     - content/rendering.qmd
-    - content/rmarkdown.Rmd
+    - content/figures_and_tables.qmd
     - content/code.qmd
     - content/adding-refs.qmd
     - content/references.qmd
