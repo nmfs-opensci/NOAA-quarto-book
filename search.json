@@ -14,7 +14,7 @@
     "href": "content/setup.html",
     "title": "1  Set-up",
     "section": "",
-    "text": "1.1 GitHub Set-up",
+    "text": "1.1 GitHub Set-up\nThis is a template for a simple Quarto book output to html, PDF or docx format. It includes a GitHub Action that will build the website automatically when you make changes to the files. The NOAA palette and fonts has been added to theme.scss. The webpage will be on the gh-pages branch. Serving the website files from this branch is a common way to keep all the website files from cluttering your main branch.\nThe GitHub Action installs R so you can have R code in your qmd or Rmd files. Note, you do not need to make changes to your Rmd files unless your need Quarto features like cross-references.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Set-up</span>"
     ]
@@ -84,7 +84,7 @@
     "href": "content/rendering.html",
     "title": "4  Rendering",
     "section": "",
-    "text": "4.1 Step 1. Make sure you have a recent RStudio\nHave you updated RStudio since about August 2022? No? Then update to a newer version of RStudio. In general, you want to keep RStudio updated and it is required to have a recent version to use Quarto.",
+    "text": "4.1 Step 1. Make sure you have a recent RStudio\nThe repo includes a GitHub Action that will render (build) the website automatically when you make changes to the files. It will be pushed to the gh-pages branch.\nBut when you are developing your content, you will want to render it locally.\nHave you updated RStudio since about August 2022? No? Then update to a newer version of RStudio. In general, you want to keep RStudio updated and it is required to have a recent version to use Quarto.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Rendering</span>"
     ]
@@ -114,7 +114,7 @@
     "href": "content/figures_and_tables.html",
     "title": "5  Figures and Tables",
     "section": "",
-    "text": "5.1 Code\nYou can embed an R code chunk like this:\nsummary(cars)\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00",
+    "text": "5.1 Code\nMarkdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.\nYou can embed an R code chunk like this:\nsummary(cars)\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Figures and Tables</span>"
     ]
@@ -144,7 +144,7 @@
     "href": "content/code.html",
     "title": "6  Rendering with Code",
     "section": "",
-    "text": "6.1 Modify the GitHub Action\nYou will need to change the GitHub Action in .github/workflows to install these and any needed packages in order for GitHub to be able to render your webpage. The GitHub Action install R since I used that in code.qmd. If you use Python or Julia instead, then you will need to update the GitHub Action to install those.\nIf getting the GitHub Action to work is too much hassle (and that definitely happens), you can alway render locally and publish to the gh-pages branch. If you do this, make sure to delete or rename the GitHub Action to something like\nso GitHub does not keep trying to run it. Nothing bad will happen if you don’t do this, but if you are not using the action (because it keeps failing), then you don’t need GitHub to run it.",
+    "text": "6.1 Modify the GitHub Action\nYou can have code (R, Python or Julia) in your qmd file. You will need to have these installed on your local computer, but presumably you do already if you are adding code to your qmd files.\nYou will need to change the GitHub Action in .github/workflows to install these and any needed packages in order for GitHub to be able to render your webpage. The GitHub Action install R since I used that in code.qmd. If you use Python or Julia instead, then you will need to update the GitHub Action to install those.\nIf getting the GitHub Action to work is too much hassle (and that definitely happens), you can alway render locally and publish to the gh-pages branch. If you do this, make sure to delete or rename the GitHub Action to something like\nso GitHub does not keep trying to run it. Nothing bad will happen if you don’t do this, but if you are not using the action (because it keeps failing), then you don’t need GitHub to run it.",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Rendering with Code</span>"
     ]
@@ -174,7 +174,7 @@
     "href": "content/adding-refs.html",
     "title": "7  References",
     "section": "",
-    "text": "Quarto has powerful references functionality. You can easily insert citations from Zotero libraries that you maintain in the cloud (on Zotero). This allows the whole team to update the library and you can sync up to that library. Read about this on the Quarto documentation on citations. Google youtube videos on this also to see it in action.\nAdd a .bib file in to your project or add a linked Zotero library via RStudio in Visual mode with Tools &gt; Project Options… &gt; R Markdown &gt; select custom libraries from the Zotero dropdown.\nThe you can type @ and you will see a dropdown of the references in your libraries. You can then select the ones to add. If you don’t see the one you need, you can paste in the DOI and it will be added to your references file (with all the info). The references will be added to your references section of your book automatically.\nSee the references.qmd file for how to include the references.\n\n@ansley1981 will produce Ansley and Davis (1981)\n[@ansley1981] will produce (Ansley and Davis 1981).\n\n\n\n\n\nAnsley, H. L. H., and C. D. Davis. 1981. “Migration and Standing Stock of Fishes Associated with Artificial and Natural Reefs on Georgia’s Outer Continental Shelf.” Brunswick, Georgia, USA.",
+    "text": "Quarto has powerful references functionality. You can easily insert citations from Zotero libraries that you maintain in the cloud (on Zotero). This allows the whole team to update the library and you can sync up to that library. Read about this on the Quarto documentation on citations. Google youtube videos on this also to see it in action.\nAdd a .bib file in to your project or add a linked Zotero library via RStudio in Visual mode with Tools &gt; Project Options… &gt; R Markdown &gt; select custom libraries from the Zotero dropdown.\nThe you can type @ and you will see a dropdown of the references in your libraries. You can then select the ones to add. If you don’t see the one you need, you can paste in the DOI and it will be added to your references file (with all the info). The references will be added to your references section of your book automatically.\nSee the references.qmd file for how to include the references.\n\n@ansley1981 will produce Ansley and Davis (1981)\n[@ansley1981] will produce (Ansley and Davis 1981).\n\n\n\n\n\nAnsley, H. L. H., and C. D. Davis. 1981. Migration and Standing Stock of Fishes Associated with Artificial and Natural Reefs on Georgia’s Outer Continental Shelf. Brunswick, Georgia, USA.",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>References</span>"
     ]
@@ -184,7 +184,7 @@
     "href": "content/references.html",
     "title": "References",
     "section": "",
-    "text": "Ansley, H. L. H., and C. D. Davis. 1981. “Migration and Standing\nStock of Fishes Associated with Artificial and Natural Reefs on\nGeorgia’s Outer Continental Shelf.” Brunswick,\nGeorgia, USA.",
+    "text": "Ansley, H. L. H., and C. D. Davis. 1981. Migration and Standing\nStock of Fishes Associated with Artificial and Natural Reefs on\nGeorgia’s Outer Continental Shelf. Brunswick, Georgia,\nUSA.",
     "crumbs": [
       "References"
     ]
